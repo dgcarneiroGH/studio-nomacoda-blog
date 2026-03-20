@@ -8,7 +8,7 @@ export default defineConfig({
   title: 'nomacoda-blog',
 
   projectId: 'a5eryyb2',
-  dataset: 'production',
+  dataset: 'development',
 
   plugins: [structureTool(), visionTool()],
 
