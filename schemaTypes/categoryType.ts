@@ -6,15 +6,10 @@ export const categoryType = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'titleES',
-      title: 'Nombre (ES)',
+      name: 'title',
+      title: 'Nombre',
       type: 'string',
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'titleEN',
-      title: 'Name (EN)',
-      type: 'string',
     }),
     defineField({
       name: 'value',
@@ -25,35 +20,26 @@ export const categoryType = defineType({
       validation: (rule) =>
         rule
           .required()
-          .regex(/^[A-Z_]+$/, {
+          .regex(/^[A-Z0-9_]+$/, {
             name: 'uppercase',
             invert: false,
           })
-          .error('Debe estar en mayúsculas y usar guiones bajos (ej: TECH, DESIGN_UI)'),
-    }),
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {source: 'titleES'},
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'description',
-      title: 'Descripción',
-      type: 'text',
-    }),
-    defineField({
-      name: 'color',
-      title: 'Color',
-      type: 'color',
-      description: 'Color para mostrar la categoría en el frontend',
+          .error(
+            'Debe estar en mayúsculas, números y guiones bajos (ej: TECH, DESIGN_UI, CATEGORY_2023)',
+          ),
     }),
   ],
   preview: {
     select: {
-      title: 'titleES',
+      title: 'title',
       subtitle: 'value',
+    },
+    prepare(selection) {
+      const {title, subtitle} = selection
+      return {
+        title: title || 'Sin título',
+        subtitle: subtitle,
+      }
     },
   },
 })
