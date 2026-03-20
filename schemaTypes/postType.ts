@@ -10,17 +10,18 @@ export const postType = defineType({
       name: 'titleES',
       title: 'Título (ES)',
       type: 'string',
-      validation: (rule) => rule.required(), 
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'excerptES',
       title: 'Resumen (ES)',
-      description: 'Texto corto para usar en tarjetas de vista previa y en la introducción del artículo.',
+      description:
+        'Texto corto para usar en tarjetas de vista previa y en la introducción del artículo.',
       type: 'text',
       validation: (rule) => rule.required().max(250),
     }),
     defineField({
-      name: 'bodyES', 
+      name: 'bodyES',
       title: 'Cuerpo (ES)',
       type: 'array',
       of: [{type: 'block'}],
@@ -28,12 +29,13 @@ export const postType = defineType({
     }),
 
     //#endregion
-    
+
     //#region Common Fields
     defineField({
       name: 'slug',
       title: 'Slug',
-      description: 'Campo generado automáticamente, que se usará a la hora de crear la URL para acceder al post',
+      description:
+        'Campo generado automáticamente, que se usará a la hora de crear la URL para acceder al post',
       type: 'slug',
       options: {source: 'titleES'},
       validation: (rule) => rule.required(),
@@ -46,12 +48,19 @@ export const postType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'category',
+      title: 'Categoría',
+      type: 'reference',
+      to: [{type: 'category'}],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'image',
       title: 'Imagen',
       type: 'image',
     }),
     //#endregion
-    
+
     //#region English fields
     defineField({
       name: 'titleEN',
