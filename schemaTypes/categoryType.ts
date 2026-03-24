@@ -6,10 +6,15 @@ export const categoryType = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Nombre',
+      name: 'nameES',
+      title: 'Nombre (ES)',
       type: 'string',
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'nameEN',
+      title: 'Name (EN)',
+      type: 'string',
     }),
     defineField({
       name: 'value',
@@ -28,17 +33,22 @@ export const categoryType = defineType({
             'Debe estar en mayúsculas, números y guiones bajos (ej: TECH, DESIGN_UI, CATEGORY_2023)',
           ),
     }),
+    defineField({
+      name: 'publishedAt',
+      title: 'Fecha de publicación',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+      validation: (rule) => rule.required(),
+    }),
   ],
   preview: {
     select: {
-      title: 'title',
-      subtitle: 'value',
+      title: 'nameES',
     },
     prepare(selection) {
-      const {title, subtitle} = selection
+      const {title} = selection
       return {
         title: title || 'Sin título',
-        subtitle: subtitle,
       }
     },
   },
