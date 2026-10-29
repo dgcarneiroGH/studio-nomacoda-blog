@@ -59,6 +59,16 @@ export const postType = defineType({
       title: 'Imagen',
       type: 'image',
     }),
+    defineField({
+      name: 'usefulCount',
+      title: 'Contador de "útil"',
+      description:
+        'Veces que los lectores han marcado este post como útil. Se incrementa desde la web (Netlify function); no editar a mano.',
+      type: 'number',
+      initialValue: 0,
+      readOnly: true,
+      validation: (rule) => rule.min(0).integer(),
+    }),
     //#endregion
 
     //#region English fields
