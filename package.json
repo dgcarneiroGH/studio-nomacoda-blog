@@ -35,6 +35,10 @@
     "singleQuote": true
   },
   "overrides": {
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "adm-zip": "^0.6.1",
+    "typeid-js": {
+      "uuid": "^11.1.1"
+    }
   }
 }
